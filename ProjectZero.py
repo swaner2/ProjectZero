@@ -54,10 +54,10 @@ card_width = 1200 // 13
 card_length = 544 // 4
 
 #centering the player deck on the bottom of the screen
-def x_center_player_deck():
+def x_center_player_deck(player_deck_number):
     x_coord = []
-    x_first_card = (800 - (len(player_deck) * card_width)) / 2
-    for i5 in range(len(player_deck)):
+    x_first_card = (800 - (len(all_player_decks[player_deck_number]) * card_width)) / 2
+    for i5 in range(len(all_player_decks[player_deck_number])):
         x_coord.append(x_first_card + i5 * card_width)
     return x_coord
 
@@ -65,7 +65,7 @@ def x_center_player_deck():
 def game():
     player_number = 0
     while True:
-        x_coordinates = (x_center_player_deck())
+        x_coordinates = (x_center_player_deck(player_number))
         screen.fill((255, 255, 255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -88,7 +88,7 @@ def game():
                     player_number %= number_of_players
                 print(pygame.mouse.get_pos())
         # drawing player decks
-        x_coordinates = (x_center_player_deck())
+        x_coordinates = (x_center_player_deck(player_number))
         for i7 in range(len(all_player_decks[player_number])):
             coordinates = card_coordinates(all_player_decks[player_number][i7])
             screen.blit(image, (x_coordinates[i7], 464),

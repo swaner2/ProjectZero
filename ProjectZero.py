@@ -88,21 +88,21 @@ def game():
                                 middle_card.append("C8")
                             player_number += 1
                             player_number %= number_of_players
-                        if len(middle_card[len(middle_card)-1]) == len(all_player_decks[player_number][i7]):
-                            if len(middle_card[len(middle_card) - 1]) < 3:
+
+                        if len(all_player_decks[player_number][i7]) == 3:
+                            if all_player_decks[player_number][i7][0] == middle_card[len(middle_card) - 1][0] or (all_player_decks[player_number][i7][1]+all_player_decks[player_number][i7][2] == middle_card[len(middle_card) - 1][1]+all_player_decks[player_number][i7][2] and len(middle_card[len(middle_card) - 1]) == 3):
                                 print(all_player_decks[player_number][i7])
-                                if all_player_decks[player_number][i7][0] == middle_card[len(middle_card) - 1][0] or all_player_decks[player_number][i7][1] == middle_card[len(middle_card) - 1][1]:
-                                    middle_card.append(all_player_decks[player_number][i7])
-                                    all_player_decks[player_number].pop(i7)
-                                    player_number += 1
-                                    player_number %= number_of_players
-                            if len(middle_card[len(middle_card) - 1]) == 3:
+                                middle_card.append(all_player_decks[player_number][i7])
+                                all_player_decks[player_number].pop(i7)
+                                player_number += 1
+                                player_number %= number_of_players
+                        if len(all_player_decks[player_number][i7]) == 2:
+                            if all_player_decks[player_number][i7][0] == middle_card[len(middle_card) - 1][0] or (all_player_decks[player_number][i7][1] == middle_card[len(middle_card) - 1][1] and len(middle_card[len(middle_card) - 1]) < 3):
                                 print(all_player_decks[player_number][i7])
-                                if all_player_decks[player_number][i7][0] == middle_card[len(middle_card) - 1][0] or (all_player_decks[player_number][i7][1] == middle_card[len(middle_card) - 1][1] and all_player_decks[player_number][i7][2] == middle_card[len(middle_card) - 1][2]):
-                                    middle_card.append(all_player_decks[player_number][i7])
-                                    all_player_decks[player_number].pop(i7)
-                                    player_number += 1
-                                    player_number %= number_of_players
+                                middle_card.append(all_player_decks[player_number][i7])
+                                all_player_decks[player_number].pop(i7)
+                                player_number += 1
+                                player_number %= number_of_players
 
                 if pygame.mouse.get_pos()[0] > 400 and pygame.mouse.get_pos()[0] < 400 + card_width and pygame.mouse.get_pos()[1] > 300 - card_length and pygame.mouse.get_pos()[1] < 300:
                     all_player_decks[player_number].append(shuffled[0])
@@ -130,6 +130,3 @@ def game():
         pygame.display.update()
 
 game()
-
-S13
-S1
